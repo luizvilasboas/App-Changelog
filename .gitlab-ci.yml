@@ -29,6 +29,6 @@ deploy:
     - perl Makefile.PL
     - make
     - make dist
-    - cpan-upload -u $PAUSE_ACCOUNT -p $PAUSE_PASSWORD App-TodoList-$VERSION_TAG.tar.gz
+    - cpan-upload -u $PAUSE_ACCOUNT -p $PAUSE_PASSWORD App-Changelog-$VERSION_TAG.tar.gz
   only:
     - tags
