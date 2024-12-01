@@ -148,3 +148,51 @@ sub _write_to_file {
 }
 
 1;
+__END__
+
+=encoding utf-8
+
+=head1 NAME
+
+changelog - Simple command-line CHANGELOG.md generator written in Perl
+
+=head1 SYNOPSIS
+
+    changelog [options]
+
+=head1 DESCRIPTION
+
+This command-line tool written in Perl for automatically generating changelogs based on Git commit history. It allows you to create detailed or compact logs, filter specific tags, and save the changelog to a file.
+
+=head1 EXAMPLES
+
+To generate a changelog in compact mode (default):
+
+    changelog
+
+To save the changelog to a specific file:
+
+    changelog --output changelog.md
+
+To generate detailed logs:
+
+    changelog --no-compact
+
+To filter commits by tags starting with "v":
+
+    changelog --filter v
+
+=head1 ERRORS
+
+If there is an error during any operation (such as adding, editing, or removing passwords), an error message will be displayed indicating the issue.
+
+=head1 AUTHOR
+
+Luiz Felipe de Castro Vilas Boas <luizfelipecastrovb@gmail.com>
+
+=head1 LICENSE
+
+This module is released under the MIT License. See the LICENSE file for more details.
+
+=cut
+
