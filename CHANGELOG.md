@@ -1,5 +1,10 @@
 # Changelog
 
+## [v1.0.1] - 2024-12-01
+
+### Doc
+- doc: add pod documentation (Luiz Felipe de Castro Vilas Boas)
+
 ## [v1.0.0] - 2024-12-01
 
 ### Build
