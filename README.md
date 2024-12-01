@@ -44,10 +44,11 @@ After installation, you can run the script directly from the command line. The a
 ### Options
 
 ```
-changelog_generator --output <output_file>     # Set the output file (default: CHANGELOG.md)
-changelog_generator --compact                  # Enable compact logs (default: enabled)
-changelog_generator --no-compact               # Disable compact mode and generate detailed logs
-changelog_generator --filter                   # Filter tags that start with the specified prefix
+changelog --output <output_file>     # Set the output file (default: CHANGELOG.md)
+changelog --compact                  # Enable compact logs (default: enabled)
+changelog --no-compact               # Disable compact mode and generate detailed logs
+changelog --conventional             # Format the changelog based on Conventional Commits
+changelog --filter                   # Filter tags that start with the specified prefix
 ```
 
 ### Examples
@@ -55,25 +56,25 @@ changelog_generator --filter                   # Filter tags that start with the
 To generate a changelog in compact mode (default):
 
 ```
-changelog_generator
+changelog
 ```
 
 To save the changelog to a specific file:
 
 ```
-changelog_generator --output changelog.md
+changelog --output changelog.md
 ```
 
 To generate detailed logs:
 
 ```
-changelog_generator --no-compact
+changelog --no-compact
 ```
 
 To filter commits by tags starting with "v":
 
 ```
-changelog_generator --filter v
+changelog --filter v
 ```
 
 ## Contributing

@@ -16,17 +16,19 @@ Options:
   --compact          Use compact logs (default: enabled)
   --no-compact       Use detailed logs (disables compact mode)
   --filter, -f       Filter tags that start with the specified prefix
+  --conventional     Format the changelog based on Conventional Commits
   --help, -h         Show this help message
 
 Examples:
   $0 --output changelog.md
   $0 --compact
   $0 --filter v
+  $0 --conventional
 END_HELP
     exit;
 }
 
-my ( $output_file, $compact, $filter_tag, $help );
+my ( $output_file, $compact, $filter_tag, $conventional, $help );
 
 $compact = 1;
 
@@ -34,6 +36,7 @@ GetOptions(
     'output|o=s' => \$output_file,
     'compact!'   => \$compact,
     'filter|f=s' => \$filter_tag,
+    'conventional!'  => \$conventional,
     'help|h'     => \$help,
 ) or die "Invalid options passed. Use --help for usage information.\n";
 
@@ -45,6 +48,7 @@ my $generator = App::Changelog->new(
     output_file => $output_file,
     compact     => $compact,
     filter_tag  => $filter_tag,
+    conventional  => $conventional,
 );
 
 $generator->generate_changelog();
