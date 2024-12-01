@@ -26,6 +26,7 @@ deploy:
   tags:
     - perl
   script:
+    - VERSION_TAG=$(echo "$VERSION_TAG" | sed 's/^v//')
     - perl Makefile.PL
     - make
     - make dist
