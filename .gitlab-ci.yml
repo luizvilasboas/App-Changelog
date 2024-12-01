@@ -1,0 +1,34 @@
+stages:
+  - setup
+  - test
+  - deploy
+
+variables:
+  VERSION_TAG: "$CI_COMMIT_TAG"
+
+setup:
+  stage: setup
+  tags:
+    - perl
+  script:
+    - perl Makefile.PL
+    - make
+
+test:
+  stage: test
+  tags:
+    - perl
+  script:
+    - prove -l t
+
+deploy:
+  stage: deploy
+  tags:
+    - perl
+  script:
+    - perl Makefile.PL
+    - make
+    - make dist
+    - cpan-upload -u $PAUSE_ACCOUNT -p $PAUSE_PASSWORD App-TodoList-$VERSION_TAG.tar.gz
+  only:
+    - tags
