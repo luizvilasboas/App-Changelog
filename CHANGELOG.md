@@ -1,5 +1,15 @@
 # Changelog
 
+## [v1.0.2] - 2024-12-02
+
+### Doc
+- doc: doc: update CHANGELOG.mg
+
+### Chore
+- chore: add Test::MockObject as a prerequisite
+- chore: update MANIFEST
+- chore: bump up version
+
 ## [v1.0.1] - 2024-12-01
 
 ### Doc
