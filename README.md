@@ -88,4 +88,4 @@ changelog --filter v
 
 ## License
 
-This project is licensed under the MIT License - see the [MIT](https://gitlab.com/olooeez/app-changelog/-/blob/main/LICENSE) file for details.
+This project is licensed under the MIT License - see the [MIT](https://github.com/luizvilasboas/App-Changelog/blob/main/LICENSE) file for details.
