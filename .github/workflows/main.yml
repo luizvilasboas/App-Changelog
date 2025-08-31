@@ -14,11 +14,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install Dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y cpanminus
-          cpanm --installdeps .
+      - name: Setup Perl environment
+        uses: shogo82148/actions-setup-perl@v1
+        with:
+          perl-version: '5.38'
+          install-modules-with: cpanm
+          install-modules-args: --notest
+          install-modules: |
+            Test::MockObject
       - name: Build module
         run: |
           perl Makefile.PL
@@ -31,11 +34,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install CPAN Uploader
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y cpanminus
-          cpanm --notest CPAN::Uploader
+      - name: Setup Perl environment
+        uses: shogo82148/actions-setup-perl@v1
+        with:
+          perl-version: '5.38'
+          install-modules-with: cpanm
+          install-modules-args: --notest
+          install-modules: |
+            CPAN::Uploader
       - name: Build and create distribution
         run: |
           perl Makefile.PL
