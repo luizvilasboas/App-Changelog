@@ -1,0 +1,42 @@
+name: Perl CI CD
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - '*'
+  pull_request:
+
+jobs:
+  build-and-test:
+    if: github.event_name == 'pull_request' || (github.event_name == 'push' && !startsWith(github.ref, 'refs/tags/'))
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build module
+        run: |
+          perl Makefile.PL
+          make
+      - name: Run tests
+        run: prove -l t
+
+  deploy:
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install CPAN Uploader
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cpanminus
+          cpanm --notest CPAN::Uploader
+      - name: Build and create distribution
+        run: |
+          perl Makefile.PL
+          make
+          make dist
+      - name: Set version tag environment variable
+        run: echo "VERSION_TAG=$(echo ${{ github.ref_name }} | sed 's/^v//')" >> $GITHUB_ENV
+      - name: Upload to CPAN
+        run: cpan-upload -u ${{ secrets.PAUSE_ACCOUNT }} -p ${{ secrets.PAUSE_PASSWORD }} App-Changelog-${{ env.VERSION_TAG }}.tar.gz
